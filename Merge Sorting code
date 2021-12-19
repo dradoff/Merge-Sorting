@@ -1,0 +1,76 @@
+import random
+import math
+# Base case. A list of zero or one elements is sorted
+# Recursive case. First, divide the list into equal-sized sublists consisting of the first half and second half of the list.
+def merge_sort(num_list):
+    if len(num_list) <= 1:
+        return (num_list)
+    else:
+        var_left = []
+        var_right = []
+        for x in range(0,len(num_list)):
+            if x < (len(num_list))/2: 
+                var_left.append(num_list[x])
+            else:
+                var_right.append(num_list[x])  
+        var_left = merge_sort(var_left)
+        var_right = merge_sort(var_right)
+        return merge(var_left, var_right)
+    
+# Recursively sort both sublists and merge the now-sorted sublists. 
+def merge(left, right):
+    result = []
+    while left != [] and right != []:
+        if left[0] <= right[0]:
+            result.append(left[0])
+            left.pop(0)
+        else:
+            result.append(right[0])
+            right.pop(0)
+    while left != []:
+        result.append(left[0])
+        left.pop(0)
+    while right != []:
+        result.append(right[0])
+        right.pop(0)
+    return result
+        
+        
+#merge_sort([2,3,4,5])
+#merge([2,4],[3,5])
+
+def rand_list(x):
+    randomlist=[]
+    for i in range(0,x):
+        n = random.randint(1,1000)
+        randomlist.append(n)
+    print (randomlist)
+    return randomlist
+    
+rand100 = rand_list(100)
+merge_sort(rand100)
+    
+def is_it_there_1(list_of_interest,element):
+    if element in list_of_interest:
+        print (str(element) + ' is in the list')
+    else:
+        print (str(element) + ' is not in the list')
+        
+#is_it_there_1([2,3,4], 5)
+
+is_it_there_1(rand100,186)
+
+def is_it_there_2(A,n,T):
+    L = 0
+    R = n-1
+    while L <= R:
+        m = math.floor((L+R)/2)
+        if A[m] < T:
+            L = m+1
+        elif A[m] > T:
+            R = m-1
+        else:
+            return (str(T) + " is in the list")
+    return (str(T) + ' is not in the list')
+#is_it_there_2([2,3,4],3,5)
+is_it_there_2(rand100,len(rand100),345)
