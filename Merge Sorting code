@@ -49,6 +49,8 @@ def rand_list(x):
     
 rand100 = rand_list(100)
 merge_sort(rand100)
+
+#Find a number in the sorted list using a binary search
     
 def is_it_there_1(list_of_interest,element):
     if element in list_of_interest:
